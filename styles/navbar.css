@@ -28,8 +28,7 @@ nav{
 .profile div, 
 .profile h1, 
 .profile h6, 
-.navbar h6, 
-header h1{
+.navbar h6{
   margin: 0;
   padding: 0;
 }
