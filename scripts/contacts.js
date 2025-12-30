@@ -17,6 +17,7 @@ const customerCompany = document.querySelector('.js-customer-company');
 // for rendering
 let customerProfileContainer = document.querySelector('.customer-profiles'); 
 
+// render from the start
 renderCustomerProfiles(); 
 
 addCustomerButton.addEventListener('click', ()=>{
@@ -25,38 +26,45 @@ addCustomerButton.addEventListener('click', ()=>{
 closeFormButton.addEventListener('click', ()=>{
   customerForm.style.visibility = 'hidden'; 
 }); 
-customerForm.addEventListener('submit', (event)=>{
-  event.preventDefault();  
 
-  const newContact = {
-    name: customerName.value, 
-    age: customerAge.value,
-    contact: customerContact.value, 
-    address: customerAddress.value,
-    role: customerRole.value, 
-    company: customerCompany.value
-  }
-  customerDetails.push(newContact); 
-  localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
-  console.log(customerDetails); 
-  
-  customerName.value = ''; 
-  customerAge.value = '';
-  customerContact.value = '';
-  customerAddress.value = '';
-  customerRole.value = ''; 
-  customerCompany.value = ''; 
-  customerProfileContainer.innerHTML = ''; 
-  renderCustomerProfiles();
-});
+function addCustomer(){
+  customerForm.addEventListener('submit', (event)=>{
+    event.preventDefault();  
+
+    // save new contact
+    const newContact = {
+      name: customerName.value, 
+      age: customerAge.value,
+      contact: customerContact.value, 
+      address: customerAddress.value,
+      role: customerRole.value, 
+      company: customerCompany.value
+    }
+    customerDetails.push(newContact); 
+    localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
+    
+    // reset inputs
+    customerName.value = ''; 
+    customerAge.value = '';
+    customerContact.value = '';
+    customerAddress.value = '';
+    customerRole.value = ''; 
+    customerCompany.value = ''; 
+    customerProfileContainer.innerHTML = ''; 
+    // rerender list of profiles
+    renderCustomerProfiles();
+  });
+}
+addCustomer(); 
 
 function renderCustomerProfiles(){
   if(customerDetails.length === 0){
-    customerDetails.innerHTML = '<h1>No Customer</h1>'
+    customerProfileContainer.innerHTML = '<h1>NO CUSTOMER</h1>'
+    return customerProfileContainer; 
   }
   let profileContainer = ''; 
   customerDetails.forEach((customer)=>{
-    profileContainer += `
+    profileContainer += ` 
       <div class="profile-card">
         <div class="customer-profile-pic">
           <img src="/assets/account-profile.svg">
@@ -65,6 +73,11 @@ function renderCustomerProfiles(){
           <p class="customer-name">${customer.name}</p>
           <p class="customer-role">${customer.role}</p>
           <p class="customer-company">${customer.company}</p>
+        </div>
+        <div class="customer-button-option">
+          <button class="view-button">View</button>
+          <button class="edit-button">Edit</button>
+          <button class="delete-button">Delete</button>
         </div>
       </div>
     `
