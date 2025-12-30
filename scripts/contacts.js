@@ -77,9 +77,10 @@ function renderCustomerProfiles(){
     return customerProfileContainer; 
   }
   let profileContainer = ''; 
-  customerDetails.forEach((customer)=>{
+
+  customerDetails.forEach((customer, index)=>{
     profileContainer += ` 
-      <div class="profile-card">
+      <div class="profile-card" data-index="${index}">
         <div class="customer-profile-pic">
           <img src="/assets/account-profile.svg">
         </div>
@@ -108,9 +109,8 @@ function setUpDeleteCustomer(){
   customerProfileContainer.addEventListener('click', (event)=>{
     if(event.target.classList.contains('delete-button')){
       const card = event.target.closest('.profile-card'); 
-      const allCards = [...customerProfileContainer.querySelectorAll('.profile-card')]; 
-      const index = allCards.indexOf(card); 
-      
+      //const allCards = [...customerProfileContainer.querySelectorAll('.profile-card')]; 
+      const index = Number(card.dataset.index); 
       customerDetails.splice(index, 1); 
       localStorage.setItem('customerDetails', JSON.stringify(customerDetails))
       
