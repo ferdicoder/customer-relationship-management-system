@@ -14,18 +14,32 @@ const customerAddress = document.querySelector('.js-customer-address');
 const customerRole = document.querySelector('.js-customer-role'); 
 const customerCompany = document.querySelector('.js-customer-company'); 
 
+// customer card buttons
+const viewButton = document.querySelectorAll('.view-button');
+const editButton = document.querySelectorAll('.edit-button'); 
+const deleteButton = document.querySelectorAll('.delete-button'); 
+
+
 // for rendering
 let customerProfileContainer = document.querySelector('.customer-profiles'); 
 
 // render from the start
 renderCustomerProfiles(); 
 
-addCustomerButton.addEventListener('click', ()=>{
-  customerForm.style.visibility = 'visible'; 
-}); 
-closeFormButton.addEventListener('click', ()=>{
-  customerForm.style.visibility = 'hidden'; 
-}); 
+function popCustomerForm(){
+  addCustomerButton.addEventListener('click', ()=>{
+    customerForm.style.visibility = 'visible'; 
+  }); 
+}
+popCustomerForm(); 
+
+function closeCustomerForm(){
+  closeFormButton.addEventListener('click', ()=>{
+    customerForm.style.visibility = 'hidden'; 
+  }); 
+}
+closeCustomerForm(); 
+
 
 function addCustomer(){
   customerForm.addEventListener('submit', (event)=>{
@@ -50,7 +64,7 @@ function addCustomer(){
     customerAddress.value = '';
     customerRole.value = ''; 
     customerCompany.value = ''; 
-    customerProfileContainer.innerHTML = ''; 
+    clearList(); 
     // rerender list of profiles
     renderCustomerProfiles();
   });
@@ -84,3 +98,25 @@ function renderCustomerProfiles(){
   });
   customerProfileContainer.innerHTML = profileContainer; 
 }
+// for rerendering purposes
+function clearList(){
+  customerProfileContainer.innerHTML = ''; 
+}
+
+
+function setUpDeleteCustomer(){
+  customerProfileContainer.addEventListener('click', (event)=>{
+    if(event.target.classList.contains('delete-button')){
+      const card = event.target.closest('.profile-card'); 
+      const allCards = [...customerProfileContainer.querySelectorAll('.profile-card')]; 
+      const index = allCards.indexOf(card); 
+      
+      customerDetails.splice(index, 1); 
+      localStorage.setItem('customerDetails', JSON.stringify(customerDetails))
+      
+      clearList(); 
+      renderCustomerProfiles(); 
+    }
+  }); 
+}
+setUpDeleteCustomer(); 
