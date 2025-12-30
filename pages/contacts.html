@@ -76,10 +76,12 @@
         <button class="add-button">
           <div>
             <img src="/assets/add-button-icon.svg">
-            <p>Add Customers</p>
+            <p>Add Customer</p>
           </div>
         </button>
       </div>
+
+      
 
       <div class="customer-profiles">
 
@@ -94,66 +96,38 @@
           </div>
         </div>
 
-        <div class="profile-card">
-          <div class="customer-profile-pic">
-            <img src="/assets/account-profile.svg">
-          </div>
-          <div class="customer-info">
-            <p class="customer-name">Ferdinand Cedrick</p>
-            <p class="customer-role">Chief Financial Officer</p>
-            <p class="customer-company">FXC Technology</p>
-          </div>
-        </div>
-
-        <div class="profile-card">
-          <div class="customer-profile-pic">
-            <img src="/assets/account-profile.svg">
-          </div>
-          <div class="customer-info">
-            <p class="customer-name">Ferdinand Cedrick</p>
-            <p class="customer-role">Chief Financial Officer</p>
-            <p class="customer-company">FXC Technology</p>
-          </div>
-        </div>
-
-        <div class="profile-card">
-          <div class="customer-profile-pic">
-            <img src="/assets/account-profile.svg">
-          </div>
-          <div class="customer-info">
-            <p class="customer-name">Ferdinand Cedrick</p>
-            <p class="customer-role">Chief Financial Officer</p>
-            <p class="customer-company">FXC Technology</p>
-          </div>
-        </div>
-        
-        <div class="profile-card">
-          <div class="customer-profile-pic">
-            <img src="/assets/account-profile.svg">
-          </div>
-          <div class="customer-info">
-            <p class="customer-name">Ferdinand Cedrick</p>
-            <p class="customer-role">Chief Financial Officer</p>
-            <p class="customer-company">FXC Technology</p>
-          </div>
-        </div>
-        
-        <div class="profile-card">
-          <div class="customer-profile-pic">
-            <img src="/assets/account-profile.svg">
-          </div>
-          <div class="customer-info">
-            <p class="customer-name">Ferdinand Cedrick</p>
-            <p class="customer-role">Chief Financial Officer</p>
-            <p class="customer-company">FXC Technology</p>
-          </div>
-        </div>
-
-        
 
       </div>
       
     </main>
+
+    <form class="add-customer-form">
+      <header>
+        <h1>Add Customer</h1>
+      </header>
+
+      <div>
+        <label for="customer-name">Name</label>
+        <br>
+        <input type="text" id="customer-name" placeholder="Ferdinand Cedrick" class="js-customer-name" required>
+      </div>
+
+      <div>
+        <label for="customer-role">Role
+        </label>
+        <br>
+        <input type="text" placeholder="Chief Technology Officer" class="js-customer-role" required>
+      </div>
+
+      <div>
+        <label for="customer-company">Company Name</label>
+        <br>
+        <input type="text" placeholder="FXC Tech" class="js-customer-company" required>
+      </div>
+      
+      <button type="submit" class="save-button">Save</button>
+      <button type="button" class="close-button">Close</button>
+    </form>
 
   </body>
   
