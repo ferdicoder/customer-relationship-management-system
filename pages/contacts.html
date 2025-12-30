@@ -81,23 +81,7 @@
         </button>
       </div>
 
-      
-
-      <div class="customer-profiles">
-
-        <div class="profile-card">
-          <div class="customer-profile-pic">
-            <img src="/assets/account-profile.svg">
-          </div>
-          <div class="customer-info">
-            <p class="customer-name">Ferdinand Cedrick B. Gelito</p>
-            <p class="customer-role">Chief Financial Officer</p>
-            <p class="customer-company">FXC Technology</p>
-          </div>
-        </div>
-
-
-      </div>
+      <div class="customer-profiles"></div>
       
     </main>
 
@@ -113,8 +97,25 @@
       </div>
 
       <div>
-        <label for="customer-role">Role
-        </label>
+        <label for="customer-age">Age</label>
+        <br>
+        <input type="text" id="customer-age" placeholder="20" class="js-customer-age" required>
+      </div>
+
+      <div>
+        <label for="customer-contact">Contact</label>
+        <br>
+        <input type="text" id="custome-contact" placeholder="0912346789" class="js-customer-contact" required>
+      </div>
+
+      <div>
+        <label for="customer-address">Address</label>
+        <br>
+        <input type="text" id="customer-address" placeholder="Sampaloc,Manila" class="js-customer-address" required>
+      </div>
+
+      <div>
+        <label for="customer-role">Role</label>
         <br>
         <input type="text" placeholder="Chief Technology Officer" class="js-customer-role" required>
       </div>
@@ -127,6 +128,7 @@
       
       <button type="submit" class="save-button">Save</button>
       <button type="button" class="close-button">Close</button>
+
     </form>
 
   </body>

@@ -111,7 +111,7 @@ header h1{
   right: 500px;
   top: 100px;
   background-color: var(--primary);
-  visibility: hidden; 
+  visibility: hidden;  
   border-radius: 10px;
 }
 .add-customer-form div{
