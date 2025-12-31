@@ -105,7 +105,7 @@ function clearList(){
 }
 
 
-function setUpDeleteCustomer(){
+function deleteCustomer(){
   customerProfileContainer.addEventListener('click', (event)=>{
     if(event.target.classList.contains('delete-button')){
       const card = event.target.closest('.profile-card'); 
@@ -119,4 +119,5 @@ function setUpDeleteCustomer(){
     }
   }); 
 }
-setUpDeleteCustomer(); 
+deleteCustomer(); 
+
