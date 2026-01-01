@@ -14,6 +14,7 @@ const customerContact = document.querySelector('.js-customer-contact');
 const customerAddress = document.querySelector('.js-customer-address'); 
 const customerRole = document.querySelector('.js-customer-role'); 
 const customerCompany = document.querySelector('.js-customer-company'); 
+let editingIndex = null; 
 
 // customer card buttons
 const viewButton = document.querySelectorAll('.view-button');
@@ -27,28 +28,39 @@ let customerProfileContainer = document.querySelector('.customer-profiles');
 renderCustomerProfiles(); 
 
 
-
-function popCustomerForm(){
+// action function
+function popInitialForm(){
   addCustomerButton.addEventListener('click', ()=>{
     customerForm.style.visibility = 'visible'; 
   }); 
 }
-popCustomerForm(); 
-
+popInitialForm(); 
 function closeCustomerForm(){
   closeFormButton.addEventListener('click', ()=>{
     customerForm.style.visibility = 'hidden'; 
+    saveCustomerButton.textContent = 'Save'
+    resetForm(); // reset form
     editingIndex = null; 
   }); 
 }
 closeCustomerForm(); 
+function clearCards(){
+  customerProfileContainer.innerHTML = ''; 
+}
+function resetForm(){
+  customerName.value = ''; 
+  customerAge.value = '';
+  customerContact.value = '';
+  customerAddress.value = '';
+  customerRole.value = ''; 
+  customerCompany.value = ''; 
+}
 
 
-let editingIndex = null; 
 function addCustomer(){
   customerForm.addEventListener('submit', (event)=>{
     event.preventDefault();  
-    
+
     const customerData = {
       name: customerName.value, 
       age: customerAge.value,
@@ -66,10 +78,9 @@ function addCustomer(){
     }
 
     localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
-    
-    
-    clearList(); 
-    renderCustomerProfiles(); // rerender list of profiles
+    // clear and rerender list of profiles
+    clearCards(); 
+    renderCustomerProfiles(); 
   });
 }
 addCustomer(); 
@@ -123,18 +134,7 @@ function renderCustomerProfiles(){
   });
   customerProfileContainer.innerHTML = profileContainer; 
 }
-// for rerendering purposes
-function clearList(){
-  customerProfileContainer.innerHTML = ''; 
-}
-function resetForm(){
-  customerName.value = ''; 
-  customerAge.value = '';
-  customerContact.value = '';
-  customerAddress.value = '';
-  customerRole.value = ''; 
-  customerCompany.value = ''; 
-}
+
 
 
 function deleteCustomer(){
@@ -152,26 +152,3 @@ function deleteCustomer(){
   }); 
 }
 deleteCustomer(); 
-
-
-
-// const saveEditButton = document.createElement('button'); 
-//   saveEditButton.textContent = 'Save Edit';
-//   saveEditButton.type = 'submit'; 
-//   customerForm.insertBefore(saveEditButton, closeFormButton); 
-// function saveEdit(index){
-//   saveEditButton.addEventListener('click', (event)=>{
-//     event.preventDefault(); 
-    
-//     customerDetails[index].name = customerName.value; 
-//     customerDetails[index].age = customerAge.value;
-//     customerDetails[index].contact = customerContact.value; 
-//     customerDetails[index].address = customerAddress.value; 
-//     customerDetails[index].role = customerRole.value; 
-//     customerDetails[index].company = customerCompany.value;
-      
-//     localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
-//     customerForm.style.visibility = 'hidden'; 
-//     renderCustomerProfiles(); 
-//   }); 
-// }
