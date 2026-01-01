@@ -20,13 +20,13 @@ const viewButton = document.querySelectorAll('.view-button');
 const editButton = document.querySelectorAll('.edit-button'); 
 const deleteButton = document.querySelectorAll('.delete-button'); 
 
-
-
 // for rendering
 let customerProfileContainer = document.querySelector('.customer-profiles'); 
 
 // render from the start
 renderCustomerProfiles(); 
+
+
 
 function popCustomerForm(){
   addCustomerButton.addEventListener('click', ()=>{
@@ -38,17 +38,18 @@ popCustomerForm();
 function closeCustomerForm(){
   closeFormButton.addEventListener('click', ()=>{
     customerForm.style.visibility = 'hidden'; 
+    editingIndex = null; 
   }); 
 }
 closeCustomerForm(); 
 
 
+let editingIndex = null; 
 function addCustomer(){
   customerForm.addEventListener('submit', (event)=>{
     event.preventDefault();  
-
-    // save new contact
-    const newContact = {
+    
+    const customerData = {
       name: customerName.value, 
       age: customerAge.value,
       contact: customerContact.value, 
@@ -56,16 +57,43 @@ function addCustomer(){
       role: customerRole.value, 
       company: customerCompany.value
     }
-    customerDetails.push(newContact); 
+    if(editingIndex === null){
+      customerDetails.push(newContact); 
+      resetForm(); // reset form
+    } else {
+      customerDetails[editingIndex] = customerData; 
+      editingIndex = null; 
+    }
+
     localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
     
-    resetForm(); // reset form
+    
     clearList(); 
-    // rerender list of profiles
-    renderCustomerProfiles();
+    renderCustomerProfiles(); // rerender list of profiles
   });
 }
 addCustomer(); 
+
+function editCustomerDetails(){
+  customerProfileContainer.addEventListener('click', (event)=>{
+    if(event.target.classList.contains('edit-button')){
+      const card = event.target.closest('.profile-card'); 
+      const index = Number(card.dataset.index); 
+      saveCustomerButton.textContent = 'Save Edit'
+
+      customerName.value = customerDetails[index].name; 
+      customerAge.value = customerDetails[index].age; 
+      customerContact.value = customerDetails[index].contact; 
+      customerAddress.value = customerDetails[index].address;
+      customerRole.value = customerDetails[index].role; 
+      customerCompany.value = customerDetails[index].company;       
+      
+      customerForm.style.visibility = 'visible'; 
+      editingIndex = index; 
+    }
+  }); 
+}
+editCustomerDetails(); 
 
 function renderCustomerProfiles(){
   if(customerDetails.length === 0){
@@ -125,44 +153,25 @@ function deleteCustomer(){
 }
 deleteCustomer(); 
 
-function editCustomerDetails(){
-  customerProfileContainer.addEventListener('click', (event)=>{
-    if(event.target.classList.contains('edit-button')){
-      const card = event.target.closest('.profile-card'); 
-      const index = Number(card.dataset.index); 
 
-      customerName.value = customerDetails[index].name; 
-      customerAge.value = customerDetails[index].age; 
-      customerContact.value = customerDetails[index].contact; 
-      customerAddress.value = customerDetails[index].address;
-      customerRole.value = customerDetails[index].role; 
-      customerCompany.value = customerDetails[index].company;       
-      
-      customerForm.style.visibility = 'visible'; 
-      saveCustomerButton.style.display = 'none'; 
-      saveEdit(index); 
-    }
-  }); 
-}
-editCustomerDetails(); 
 
-const saveEditButton = document.createElement('button'); 
-  saveEditButton.textContent = 'Save Edit';
-  saveEditButton.type = 'submit'; 
-  customerForm.insertBefore(saveEditButton, closeFormButton); 
-function saveEdit(index){
-  saveEditButton.addEventListener('click', (event)=>{
-    event.preventDefault(); 
+// const saveEditButton = document.createElement('button'); 
+//   saveEditButton.textContent = 'Save Edit';
+//   saveEditButton.type = 'submit'; 
+//   customerForm.insertBefore(saveEditButton, closeFormButton); 
+// function saveEdit(index){
+//   saveEditButton.addEventListener('click', (event)=>{
+//     event.preventDefault(); 
     
-    customerDetails[index].name = customerName.value; 
-    customerDetails[index].age = customerAge.value;
-    customerDetails[index].contact = customerContact.value; 
-    customerDetails[index].address = customerAddress.value; 
-    customerDetails[index].role = customerRole.value; 
-    customerDetails[index].company = customerCompany.value;
+//     customerDetails[index].name = customerName.value; 
+//     customerDetails[index].age = customerAge.value;
+//     customerDetails[index].contact = customerContact.value; 
+//     customerDetails[index].address = customerAddress.value; 
+//     customerDetails[index].role = customerRole.value; 
+//     customerDetails[index].company = customerCompany.value;
       
-    localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
-    customerForm.style.visibility = 'hidden'; 
-    renderCustomerProfiles(); 
-  }); 
-}
+//     localStorage.setItem('customerDetails', JSON.stringify(customerDetails)); 
+//     customerForm.style.visibility = 'hidden'; 
+//     renderCustomerProfiles(); 
+//   }); 
+// }
