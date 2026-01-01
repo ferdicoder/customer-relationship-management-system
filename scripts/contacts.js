@@ -70,7 +70,7 @@ function addCustomer(){
       company: customerCompany.value
     }
     if(editingIndex === null){
-      customerDetails.push(newContact); 
+      customerDetails.push(customerData); 
       resetForm(); // reset form
     } else {
       customerDetails[editingIndex] = customerData; 
