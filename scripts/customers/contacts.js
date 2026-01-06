@@ -5,7 +5,6 @@ const addCustomerButton = document.querySelector('.add-button');
 const closeFormButton = document.querySelector('.close-button'); 
 const saveCustomerButton = document.querySelector('.save-button'); 
 
-
 // form data
 const customerForm = document.querySelector('.add-customer-form');
 const customerName = document.querySelector('.js-customer-name');
@@ -27,7 +26,6 @@ let customerProfileContainer = document.querySelector('.customer-profiles');
 // render from the start
 renderCustomerProfiles(); 
 
-
 // action function
 function popInitialForm(){
   addCustomerButton.addEventListener('click', ()=>{
@@ -35,6 +33,7 @@ function popInitialForm(){
   }); 
 }
 popInitialForm(); 
+
 function closeCustomerForm(){
   closeFormButton.addEventListener('click', ()=>{
     customerForm.style.visibility = 'hidden'; 
@@ -44,6 +43,7 @@ function closeCustomerForm(){
   }); 
 }
 closeCustomerForm(); 
+
 function clearCards(){
   customerProfileContainer.innerHTML = ''; 
 }
@@ -55,7 +55,6 @@ function resetForm(){
   customerRole.value = ''; 
   customerCompany.value = ''; 
 }
-
 
 function addCustomer(){
   customerForm.addEventListener('submit', (event)=>{
@@ -134,8 +133,6 @@ function renderCustomerProfiles(){
   });
   customerProfileContainer.innerHTML = profileContainer; 
 }
-
-
 
 function deleteCustomer(){
   customerProfileContainer.addEventListener('click', (event)=>{
