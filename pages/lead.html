@@ -9,6 +9,7 @@
   
   <link rel="stylesheet" href="../styles/navbar.css">
   <link rel="stylesheet" href="../styles/lead.css">
+  <script src="../scripts/lead management/main.js" defer></script>
   <title>Lead Management</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
   <nav>
     <div class="profile">
       <div class="profile-pic-container">
-        <img src="/assets/account-profile.svg" alt="profile">
+        <img src="../assets/account-profile.svg" alt="profile">
       </div>
 
       <div class="profile-name">
@@ -31,40 +32,82 @@
     <div class="navbar">
       <a href="./customers.html">
         <div>
-          <img src="/assets/customer-icon.svg" alt=""> 
+          <img src="../assets/customer-icon.svg" alt=""> 
           <h6>Customers</h6>
         </div>
       </a>
 
       <a href="./dashboard.html">
         <div>
-          <img src="/assets/dashboard-icon.svg" alt=""> 
+          <img src="../assets/dashboard-icon.svg" alt=""> 
           <h6>Dashboard</h6>
         </div>
       </a>
 
       <a href="./ventures.html">
         <div>
-          <img src="/assets/activity-icon.svg" alt=""> 
+          <img src="../assets/activity-icon.svg" alt=""> 
           <h6>Ventures</h6>
         </div>
       </a>
 
       <a href="./lead.html">
         <div>
-          <img src="/assets/lead-icon.svg" alt=""> 
+          <img src="../assets/lead-icon.svg" alt=""> 
           <h6>Lead Management</h6>
         </div>
       </a>
 
       <a href="./tasks.html">
         <div>
-          <img src="/assets/task-icon.svg" alt=""> 
+          <img src="../assets/task-icon.svg" alt=""> 
           <h6>Tasks</h6>
         </div>
       </a>
       </div>
     </nav>
+
+  <main>
+    <div class="kanban-board">
+      <div class="kanban-column" id="new-leads">
+        <h3>New Leads</h3>
+        <div class="kanban-cards">
+          <div class="lead-card" draggable="true">
+            <h4>John Doe</h4>
+            <p>Email: john@example.com</p>
+            <p>Phone: 123-456-7890</p>
+          </div>
+          <div class="lead-card" draggable="true">
+            <h4>Jane Smith</h4>
+            <p>Email: jane@example.com</p>
+            <p>Phone: 987-654-3210</p>
+          </div>
+        </div>
+      </div>
+      <div class="kanban-column" id="contacted">
+        <h3>Contacted</h3>
+        <div class="kanban-cards">
+          <div class="lead-card" draggable="true">
+            <h4>Bob Johnson</h4>
+            <p>Email: bob@example.com</p>
+            <p>Phone: 555-123-4567</p>
+          </div>
+        </div>
+      </div>
+      <div class="kanban-column" id="qualified">
+        <h3>Qualified</h3>
+        <div class="kanban-cards">
+          <!-- Placeholder for qualified leads -->
+        </div>
+      </div>
+      <div class="kanban-column" id="closed">
+        <h3>Closed</h3>
+        <div class="kanban-cards">
+          <!-- Placeholder for closed leads -->
+        </div>
+      </div>
+    </div>
+  </main>
 
 </body>
 </html>
